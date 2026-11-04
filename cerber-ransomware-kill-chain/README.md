@@ -32,18 +32,20 @@ Splunk (SPL)
 - **Why it's malicious:** The Cerber Checkin 2 alert showed me the infected machine was reporting back to the attacker’s server to confirm the infection worked. I also saw .onion domain lookups. A normal office PC has no reason to do that, since .onion sites are hidden Tor sites that ransomware gangs use for things like payment pages.
 
 ### 4. Actions on Objectives
-- **Search:** `...`
-- **Found:**
-- **Why it's malicious:**
+- **Search:** index=botsv1 earliest=0 Process_Command_Line="*" (vssadmin OR cmd.exe)` and `index=botsv1 earliest=0 cmd.exe *.tmp`
+- **Found:** I found that vssadmin was used on we8105desk, and cmd.exe ran a file called 121214.tmp from Bob's AppData folder. A whoami command was also run.
+- **Why it's malicious:** Ransomware uses vssadmin to delete Windows backup copies, so the victim can't restore their files and is pushed to pay. A .tmp file running from AppData is not normal behaviour, and whoami shows someone checking which account they had control of.
 
 ## Indicators of Compromise
 | Type | Value | What it was |
 |------|-------|-------------|
-| IP | | |
-| File | | |
-| Host | | |
+| Host | we8105desk | Bob Smith's infected machine |
+| USB serial | 7D961196 | Likely delivery device |
+| File | osk.exe (in AppData\Roaming) | Cerber malware disguised as a Windows program |
+| File | 121214.tmp | File executed via cmd.exe |
+| Network | 85.93.x.x | Cerber C2 traffic |
 
-## Lessons learned
+## Lessons learnt 
 -
 -
 -
