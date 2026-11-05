@@ -45,7 +45,7 @@ Splunk (SPL)
 | File | 121214.tmp | File executed via cmd.exe |
 | Network | 85.93.x.x | Cerber C2 traffic |
 
-## Lessons learne't
+## Lessons learn't
 - I learnt why attackers use startup methods like Run keys. Memory resets when a PC shuts down, so the malware needs a way to start again after every reboot.
 - I first picked ProcessID 1216, which was Sysmon's own process, not the malware. The right field was ProcessId (small d), so one capital letter changed the answer.
 - Real Windows system programs like osk.exe live in System32. Finding one in AppData was the clue it was malware.
