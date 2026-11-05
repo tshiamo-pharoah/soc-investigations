@@ -35,8 +35,8 @@ Splunk (SPL)
 ## Indicators of Compromise
 | Type | Value | What it was |
 |------|-------|-------------|
-| Host | we8105desk | Bob Smith's infected machine |
-| USB serial | 7D961196 | Likely delivery device |
+| Host | we8105desk | Bob Smith's infected Computer |
+| USB serial | 7D961196 | delivery device |
 | File | osk.exe (in AppData\Roaming) | Cerber malware disguised as a Windows program |
 | File | 121214.tmp | File executed via cmd.exe |
 | Network | 85.93.x.x | Cerber C2 traffic |
