@@ -3,8 +3,8 @@
 
 # Investigating a Cerber Ransomware Attack with Splunk
 
-## 60-second summary
-(4 to 5 sentences: what happened, from first contact to ransomware running)
+## Case summary
+In this investigation, a USB drive was plugged into user bob.smith’s computer (host:we8105desk) to deliver Cerber ransomware. The malware disguised itself as a real Windows program (osk.exe) in the AppData folder and used a Run key to start every time the PC turned on. It then checked in with the attacker’s servers on the 85.93.x.x network, and ran the vssadmin command to delete Windows backups so the files couldn't be restored.
 
 ## Scenario
 Hands-on lab where I played the role of a junior SOC analyst, investigating an incident in Splunk using the BOTS v1 dataset (Immersive Labs, Cyber Million programme). 
@@ -45,8 +45,9 @@ Splunk (SPL)
 | File | 121214.tmp | File executed via cmd.exe |
 | Network | 85.93.x.x | Cerber C2 traffic |
 
-## Lessons learnt 
--
--
--
+## Lessons learne't
+- I learnt why attackers use startup methods like Run keys. Memory resets when a PC shuts down, so the malware needs a way to start again after every reboot.
+- I first picked ProcessID 1216, which was Sysmon's own process, not the malware. The right field was ProcessId (small d), so one capital letter changed the answer.
+- Real Windows system programs like osk.exe live in System32. Finding one in AppData was the clue it was malware.
+- Sysmon showed osk.exe talking to 85.93.x.x, and Suricata flagged the same network as Cerber. Two logs agreeing turned a hint into evidence.
 
