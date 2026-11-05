@@ -42,7 +42,7 @@ Splunk (SPL)
 | Network | 85.93.x.x | Cerber C2 traffic |
 
 ## Lessons learn't
-- I learnt why attackers use startup methods like Run keys. Memory resets when a PC shuts down, so the malware needs a way to start again after every reboot.
+- I learnt why attackers use startup methods like Run keys. Memory(RAM) resets when a PC shuts down, so the malware needs a way to start again after every reboot.
 - I first picked ProcessID 1216, which was Sysmon's own process, not the malware. The right field was ProcessId (small d), so one capital letter changed the answer.
 - Real Windows system programs like osk.exe live in System32. Finding one in AppData was the clue it was malware.
 - Sysmon showed osk.exe talking to 85.93.x.x, and Suricata flagged the same network as Cerber. Two logs agreeing turned a hint into evidence.
